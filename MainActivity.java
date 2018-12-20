@@ -2,7 +2,9 @@ package com.example.ntobekozwane.myapplication321;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -10,6 +12,11 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int qntty = 0;
+    //CheckBox whippdCream = findViewById(R.id.chkbx_whippedCream);
+    boolean hasWhippedCream = false;
+    boolean hasChocolate = false;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
     }
     public void SubmitOrder(View view)//calaculates order price/total...takes quantity * 5
     {
+        CheckBox whippdCream = findViewById(R.id.chkbx_whippedCream);
+        hasWhippedCream= whippdCream.isChecked();
+
+        CheckBox chocolate = findViewById(R.id.chkbx_chocolate);
+        hasChocolate= chocolate.isChecked();
+
         DisplayPrice(qntty *5);
     }
     private void Display(int number)//displays number of ordered items..increses or decreases
@@ -27,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
     private void DisplayPrice(int num)//displays total price
     {
         TextView txtOrderSummary= findViewById(R.id.txt_OrderSummary);
-        //String txt = qntty + " cups cost R" + num;//from part 1
-        String txt2 = createOrderSummary();
-        txtOrderSummary.setText(txt2);
-        //txtprice.setText("Total " + NumberFormat.getCurrencyInstance().format(num));
+        txtOrderSummary.setText(createOrderSummary());
+
+        //Log.v("MainActivity", "Has WhippedCream " + hasWhippedCream);
+
     }
     public void Increase(View view)
     {
@@ -51,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         //orderPrice=SubmitOrder();
         return "Name: Ntobeko Zwane"
                 + "\nQuantity: "+qntty
+                + "\nHas WhippedCream: " +hasWhippedCream
+                + "\nHas Chocolate: " +hasChocolate
+
                 + "\nTotal: "+calculatePrice()
                 + "\nThank You";
     }
