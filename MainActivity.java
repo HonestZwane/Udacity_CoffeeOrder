@@ -16,7 +16,6 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     int qntty = 0;
-    //CheckBox whippdCream = findViewById(R.id.chkbx_whippedCream);
     boolean hasWhippedCream = false;
     boolean hasChocolate ;//= false;
     String userName = "";
@@ -37,14 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
         CheckBox chocolate = findViewById(R.id.chkbx_chocolate);
         hasChocolate= chocolate.isChecked();
-
-        /*Intent intent =new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Coffee Order for " + userName);
-        intent.putExtra(Intent.EXTRA_TEXT, createOrderSummary());
-        if(intent.resolveActivity(getPackageManager()) != null)
-            startActivity(intent);*/
-
 
         DisplayPrice(qntty *5);
     }
@@ -95,12 +86,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public String createOrderSummary()
     {
-        //orderPrice=SubmitOrder();
         return "Name: "+userName
                 + "\nQuantity: "+qntty
                 + "\nHas WhippedCream: " +hasWhippedCream
                 + "\nHas Chocolate: " +hasChocolate
-
                 + "\nTotal: "+calculatePrice()
                 + "\nThank You";
     }
